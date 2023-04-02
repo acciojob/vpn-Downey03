@@ -24,35 +24,35 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(String username, String password, String countryName) throws Exception{
 
-        countryName = countryName.toUpperCase();
-        CountryName cntyName;
-
-        try {
-            cntyName = CountryName.valueOf(countryName);
-        }catch (Exception e){
-            throw new Exception("Country Not Found");
-        }
-
-        Country country = new Country();
-        country.setCountryName(cntyName);
-        country.setCode(cntyName.toCode());
+//        countryName = countryName.toUpperCase();
+//        CountryName cntyName;
+//
+//        try {
+//            cntyName = CountryName.valueOf(countryName);
+//        }catch (Exception e){
+//            throw new Exception("Country Not Found");
+//        }
+//
+//        Country country = new Country();
+//        country.setCountryName(cntyName);
+//        country.setCode(cntyName.toCode());
+//
+//        User user = new User();
+//        user.setCountry(country);
+//        user.setConnected(false);
+//        user.setUsername(username);
+//        user.setOriginalCountry(country);
+//        user.setPassword(password);
+//        country.setUser(user);
+//
+//        userRepository3.save(user);
+//
+//        String countryCode = cntyName.toCode();
+//        countryCode = countryCode+user.getId();
+//
+//        user.setOriginalIp(countryCode);
 
         User user = new User();
-        user.setCountry(country);
-        user.setConnected(false);
-        user.setUsername(username);
-        user.setOriginalCountry(country);
-        user.setPassword(password);
-        country.setUser(user);
-
-        userRepository3.save(user);
-
-        String countryCode = cntyName.toCode();
-        countryCode = countryCode+user.getId();
-
-        user.setOriginalIp(countryCode);
-
-
         return user;
 
     }
@@ -60,24 +60,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public User subscribe(Integer userId, Integer serviceProviderId) throws Exception {
 
-        User user;
-        try {
-            user = userRepository3.findById(userId).get();
-        }catch (Exception e){
-            throw new Exception("User Not found");
-        }
+//        User user;
+//        try {
+//            user = userRepository3.findById(userId).get();
+//        }catch (Exception e){
+//            throw new Exception("User Not found");
+//        }
+//
+//        ServiceProvider serviceProvider;
+//        try {
+//            serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
+//        }catch (Exception e){
+//            throw new Exception("Service Provider Not Found");
+//        }
+//
+//        user.getServiceProviderList().add(serviceProvider);
+//        serviceProvider.getUsers().add(user);
+//
+//        userRepository3.save(user);
 
-        ServiceProvider serviceProvider;
-        try {
-            serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
-        }catch (Exception e){
-            throw new Exception("Service Provider Not Found");
-        }
-
-        user.getServiceProviderList().add(serviceProvider);
-        serviceProvider.getUsers().add(user);
-
-        userRepository3.save(user);
+        User user = new User();
         return user;
     }
 }
