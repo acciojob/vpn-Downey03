@@ -23,49 +23,49 @@ public class ConnectionServiceImpl implements ConnectionService {
 
     @Override
     public User connect(int userId, String countryName) throws Exception{
-//        User user;
-//        try{
-//            user = userRepository2.findById(userId).get();
-//        }catch (Exception e){
-//            throw new Exception("User Not Found");
-//        }
-//
-//        if(user.getConnected()) throw new Exception("Already Connected");
-//
-//        countryName = countryName.toUpperCase();
-//        CountryName cntyName ;
-//
-//        try {
-//            cntyName = CountryName.valueOf(countryName);
-//        }catch (Exception e){
-//            throw new Exception("Country Not Found");
-//        }
-//
-//        if(user.getCountry().getCountryName().equals(cntyName)) return user;
-//
-//        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(user.getServiceProviderList(),cntyName);
-//
-//        if(availableProviders.size() == 0) throw new Exception("Unable to connect");
-//
-//        ServiceProvider serviceProvider = ServiceChecker.getLowIDProvider(availableProviders);
-//
-//        user.setConnected(true);
-//        String markupIp = cntyName.toCode()+serviceProvider.getId()+user.getId();
-//        user.setMaskedIp(markupIp);
-//        user.setConnected(true);
-//        Connection connection = new Connection();
-//        connection.setUser(user);
-//        connection.setServiceProvider(serviceProvider);
-//        user.getConnectionList().add(connection);
-//        serviceProvider.getConnectionList().add(connection);
-//        Country country = user.getCountry();
-//        country.setCountryName(cntyName);
-//        country.setCode(cntyName.toCode());
-//        user.setCountry(country);
-//
-//        userRepository2.save(user);
+        User user;
+        try{
+            user = userRepository2.findById(userId).get();
+        }catch (Exception e){
+            throw new Exception("User Not Found");
+        }
 
-        User user = new User();
+        if(user.getConnected()) throw new Exception("Already Connected");
+
+        countryName = countryName.toUpperCase();
+        CountryName cntyName ;
+
+        try {
+            cntyName = CountryName.valueOf(countryName);
+        }catch (Exception e){
+            throw new Exception("Country Not Found");
+        }
+
+        if(user.getOriginalCountry().getCountryName().equals(cntyName)) return user;
+
+        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(user.getServiceProviderList(),cntyName);
+
+        if(availableProviders.size() == 0) throw new Exception("Unable to connect");
+
+        ServiceProvider serviceProvider = ServiceChecker.getLowIDProvider(availableProviders);
+
+        user.setConnected(true);
+        String markupIp = cntyName.toCode()+serviceProvider.getId()+user.getId();
+        user.setMaskedIp(markupIp);
+        user.setConnected(true);
+        Connection connection = new Connection();
+        connection.setUser(user);
+        connection.setServiceProvider(serviceProvider);
+        user.getConnectionList().add(connection);
+        serviceProvider.getConnectionList().add(connection);
+        Country country = user.getOriginalCountry();
+        country.setCountryName(cntyName);
+        country.setCode(cntyName.toCode());
+        user.setOriginalCountry(country);
+
+        userRepository2.save(user);
+
+
         return user;
 
     }
