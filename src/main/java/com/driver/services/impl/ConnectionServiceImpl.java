@@ -30,7 +30,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             throw new Exception("User Not Found");
         }
 
-        if(user.isConnected()) throw new Exception("Already Connected");
+        if(user.getConnected()) throw new Exception("Already Connected");
 
         countryName = countryName.toUpperCase();
         CountryName cntyName ;
@@ -75,7 +75,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             throw new Exception("User not found");
         }
 
-        if(!user.isConnected()) throw new Exception("Already disconnected");
+        if(!user.getConnected()) throw new Exception("Already disconnected");
 
         user.setMaskedIP(null);
         user.setConnected(false);

@@ -14,6 +14,7 @@ public class User {
     private String originalIP;
     private String maskedIP;
     private boolean connected;
+    private Country originalCountry;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     Country country;
@@ -78,9 +79,10 @@ public class User {
         this.maskedIP = maskedIP;
     }
 
-    public boolean isConnected() {
+    public boolean getConnected() {
         return connected;
     }
+
 
     public void setConnected(boolean connected) {
         this.connected = connected;
