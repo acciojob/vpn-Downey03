@@ -14,16 +14,16 @@ public class Admin {
     private String password;
 
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
-    List<ServiceProvider> serviceProvider = new ArrayList<>();
+    List<ServiceProvider> serviceProviders = new ArrayList<>();
 
     public Admin() {
     }
 
-    public Admin(int id, String username, String password, List<ServiceProvider> serviceProvider) {
+    public Admin(int id, String username, String password, List<ServiceProvider> serviceProviders) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.serviceProvider = serviceProvider;
+        this.serviceProviders = serviceProviders;
     }
 
     public int getId() {
@@ -50,11 +50,11 @@ public class Admin {
         this.password = password;
     }
 
-    public List<ServiceProvider> getServiceProvider() {
-        return serviceProvider;
+    public List<ServiceProvider> getServiceProviders() {
+        return serviceProviders;
     }
 
-    public void setServiceProvider(List<ServiceProvider> serviceProvider) {
-        this.serviceProvider = serviceProvider;
+    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
+        this.serviceProviders = serviceProviders;
     }
 }
