@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         String countryCode = cntyName.toCode();
         countryCode = countryCode+user.getId();
 
-        user.setOriginalIP(countryCode);
+        user.setOriginalIp(countryCode);
 
 
         return user;

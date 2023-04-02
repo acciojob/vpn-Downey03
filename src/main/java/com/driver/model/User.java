@@ -11,8 +11,8 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String originalIP;
-    private String maskedIP;
+    private String originalIp;
+    private String maskedIp;
     private boolean connected;
     private Country originalCountry;
 
@@ -27,12 +27,12 @@ public class User {
 
     public User() {
     }
-    public User(int id, String username, String password, String originalIP, String maskedIP, boolean connected, Country country, List<Connection> connectionList, List<ServiceProvider> serviceProviderList) {
+    public User(int id, String username, String password, String originalIp, String maskedIp, boolean connected, Country country, List<Connection> connectionList, List<ServiceProvider> serviceProviderList) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.originalIP = originalIP;
-        this.maskedIP = maskedIP;
+        this.originalIp = originalIp;
+        this.maskedIp = maskedIp;
         this.connected = connected;
         this.country = country;
         this.connectionList = connectionList;
@@ -75,20 +75,20 @@ public class User {
         this.password = password;
     }
 
-    public String getOriginalIP() {
-        return originalIP;
+    public String getOriginalIp() {
+        return originalIp;
     }
 
-    public void setOriginalIP(String originalIP) {
-        this.originalIP = originalIP;
+    public void setOriginalIp(String originalIp) {
+        this.originalIp = originalIp;
     }
 
-    public String getMaskedIP() {
-        return maskedIP;
+    public String getMaskedIp() {
+        return maskedIp;
     }
 
-    public void setMaskedIP(String maskedIP) {
-        this.maskedIP = maskedIP;
+    public void setMaskedIp(String maskedIp) {
+        this.maskedIp = maskedIp;
     }
 
     public boolean getConnected() {

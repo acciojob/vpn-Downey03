@@ -51,7 +51,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         user.setConnected(true);
         String markupIp = cntyName.toCode()+serviceProvider.getId()+user.getId();
-        user.setMaskedIP(markupIp);
+        user.setMaskedIp(markupIp);
         Connection connection = new Connection();
         connection.setUser(user);
         connection.setServiceProvider(serviceProvider);
@@ -77,11 +77,11 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         if(!user.getConnected()) throw new Exception("Already disconnected");
 
-        user.setMaskedIP(null);
+        user.setMaskedIp(null);
         user.setConnected(false);
 
         Country country = user.getCountry();
-        String countryName = CountryPicker.getCountryFromIP(user.getOriginalIP());
+        String countryName = CountryPicker.getCountryFromIP(user.getOriginalIp());
         CountryName cntyName = CountryName.valueOf(countryName);
         country.setCountryName(cntyName);
         country.setCode(cntyName.toCode());
@@ -111,7 +111,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         if( senderCountry == receiverCountry) return sender;
 
-        String countryName = CountryPicker.getCountryFromIP(receiver.getOriginalIP());
+        String countryName = CountryPicker.getCountryFromIP(receiver.getOriginalIp());
         CountryName cntyName = CountryName.valueOf(countryName);
 
         List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(sender.getServiceProviderList(),cntyName);
