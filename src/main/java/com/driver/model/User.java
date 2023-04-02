@@ -51,6 +51,18 @@ public class User {
         return username;
     }
 
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public Country getOriginalCountry() {
+        return originalCountry;
+    }
+
+    public void setOriginalCountry(Country originalCountry) {
+        this.originalCountry = originalCountry;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

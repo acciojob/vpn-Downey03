@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         user.setCountry(country);
         user.setConnected(false);
         user.setUsername(username);
+        user.setOriginalCountry(country);
         user.setPassword(password);
         country.setUser(user);
 
