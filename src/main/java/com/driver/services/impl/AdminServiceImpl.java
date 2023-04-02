@@ -35,48 +35,52 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin addServiceProvider(int adminId, String providerName) throws Exception {
-        Admin admin ;
-        try {
-            admin = adminRepository1.findById(adminId).get();
-        }catch (Exception e){
-            throw new Exception("Admin Not Found");
-        }
+//        Admin admin ;
+//        try {
+//            admin = adminRepository1.findById(adminId).get();
+//        }catch (Exception e){
+//            throw new Exception("Admin Not Found");
+//        }
+//
+//        ServiceProvider serviceProvider = new ServiceProvider();
+//
+//        serviceProvider.setAdmin(admin);
+//        serviceProvider.setName(providerName);
+//        admin.getServiceProviders().add(serviceProvider);
+//
+//        adminRepository1.save(admin);
 
-        ServiceProvider serviceProvider = new ServiceProvider();
-
-        serviceProvider.setAdmin(admin);
-        serviceProvider.setName(providerName);
-        admin.getServiceProviders().add(serviceProvider);
-
-        adminRepository1.save(admin);
+        Admin admin = new Admin();
         return admin;
     }
 
     @Override
     public ServiceProvider addCountry(int serviceProviderId, String countryName) throws Exception{
-        ServiceProvider serviceProvider;
-        try {
-            serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
-        }catch (Exception e){
-            throw new Exception("Service Provider Not Found");
-        }
+//        ServiceProvider serviceProvider;
+//        try {
+//            serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
+//        }catch (Exception e){
+//            throw new Exception("Service Provider Not Found");
+//        }
+//
+//        Country country = new Country();
+//        countryName = countryName.toUpperCase();
+//        CountryName cntyName;
+//
+//        try {
+//            cntyName = CountryName.valueOf(countryName);
+//        }catch (Exception e){
+//            throw new Exception("Country not found");
+//        }
+//
+//        country.setCountryName(cntyName);
+//        country.setServiceProvider(serviceProvider);
+//        country.setCode(cntyName.toCode());
+//
+//        serviceProvider.getCountryList().add(country);
+//        serviceProviderRepository1.save(serviceProvider);
 
-        Country country = new Country();
-        countryName = countryName.toUpperCase();
-        CountryName cntyName;
-
-        try {
-            cntyName = CountryName.valueOf(countryName);
-        }catch (Exception e){
-            throw new Exception("Country not found");
-        }
-
-        country.setCountryName(cntyName);
-        country.setServiceProvider(serviceProvider);
-        country.setCode(cntyName.toCode());
-
-        serviceProvider.getCountryList().add(country);
-        serviceProviderRepository1.save(serviceProvider);
+        ServiceProvider serviceProvider = new ServiceProvider();
         return  serviceProvider;
     }
 }
