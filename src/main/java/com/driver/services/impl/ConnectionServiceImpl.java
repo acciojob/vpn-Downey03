@@ -71,76 +71,76 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
     @Override
     public User disconnect(int userId) throws Exception {
-//        User user ;
-//        try {
-//            user = userRepository2.findById(userId).get();
-//        }catch (Exception e){
-//            throw new Exception("User not found");
-//        }
-//
-//        if(!user.getConnected()) throw new Exception("Already disconnected");
-//
-//        user.setMaskedIp(null);
-//        user.setConnected(false);
-//
-//        Country country = user.getCountry();
-//        String countryName = CountryPicker.getCountryFromIP(user.getOriginalIp());
-//        CountryName cntyName = CountryName.valueOf(countryName);
-//        country.setCountryName(cntyName);
-//        country.setCode(cntyName.toCode());
-//        user.setCountry(country);
-//        user.setConnected(false);
-//
-//        userRepository2.save(user);
-        User user = new User();
+        User user ;
+        try {
+            user = userRepository2.findById(userId).get();
+        }catch (Exception e){
+            throw new Exception("User not found");
+        }
+
+        if(!user.getConnected()) throw new Exception("Already disconnected");
+
+        user.setMaskedIp(null);
+        user.setConnected(false);
+
+        Country country = user.getOriginalCountry();
+        String countryName = CountryPicker.getCountryFromIP(user.getOriginalIp());
+        CountryName cntyName = CountryName.valueOf(countryName);
+        country.setCountryName(cntyName);
+        country.setCode(cntyName.toCode());
+        user.setOriginalCountry(country);
+        user.setConnected(false);
+
+        userRepository2.save(user);
+
         return user;
     }
         @Override
         public User communicate(int senderId, int receiverId) throws Exception {
-//        User sender ;
-//        try {
-//            sender = userRepository2.findById(senderId).get();
-//        }catch (Exception e){
-//            throw new Exception("Sender Not Found");
-//        }
-//
-//        User receiver ;
-//        try {
-//            receiver = userRepository2.findById(receiverId).get();
-//        }catch (Exception e){
-//            throw new Exception("Receiver Not Found");
-//        }
-//
-//        CountryName senderCountry = sender.getCountry().getCountryName();
-//        CountryName receiverCountry = receiver.getCountry().getCountryName();
-//
-//        if( senderCountry == receiverCountry) return sender;
-//
-//        String countryName = CountryPicker.getCountryFromIP(receiver.getOriginalIp());
-//        CountryName cntyName = CountryName.valueOf(countryName);
-//
-//        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(sender.getServiceProviderList(),cntyName);
-//
-//        if(availableProviders.size() == 0) throw new Exception("Cannot establish communication");
-//
-//        Country country = sender.getCountry();
-//        country.setCountryName(cntyName);
-//        country.setCode(cntyName.toCode());
-//        sender.setCountry(country);
-//
-//        ServiceProvider serviceProvider = ServiceChecker.getLowIDProvider(availableProviders);
-//
-//        Connection connection = new Connection();
-//        connection.setUser(sender);
-//        connection.setServiceProvider(serviceProvider);
-//
-//        sender.setConnected(true);
-//        sender.getConnectionList().add(connection);
-//        serviceProvider.getConnectionList().add(connection);
-//
-//        userRepository2.save(sender);
+        User sender ;
+        try {
+            sender = userRepository2.findById(senderId).get();
+        }catch (Exception e){
+            throw new Exception("Sender Not Found");
+        }
 
-        User sender = new User();
+        User receiver ;
+        try {
+            receiver = userRepository2.findById(receiverId).get();
+        }catch (Exception e){
+            throw new Exception("Receiver Not Found");
+        }
+
+        CountryName senderCountry = sender.getOriginalCountry().getCountryName();
+        CountryName receiverCountry = receiver.getOriginalCountry().getCountryName();
+
+        if( senderCountry == receiverCountry) return sender;
+
+        String countryName = CountryPicker.getCountryFromIP(receiver.getOriginalIp());
+        CountryName cntyName = CountryName.valueOf(countryName);
+
+        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(sender.getServiceProviderList(),cntyName);
+
+        if(availableProviders.size() == 0) throw new Exception("Cannot establish communication");
+
+        Country country = sender.getOriginalCountry();
+        country.setCountryName(cntyName);
+        country.setCode(cntyName.toCode());
+        sender.setOriginalCountry(country);
+
+        ServiceProvider serviceProvider = ServiceChecker.getLowIDProvider(availableProviders);
+
+        Connection connection = new Connection();
+        connection.setUser(sender);
+        connection.setServiceProvider(serviceProvider);
+
+        sender.setConnected(true);
+        sender.getConnectionList().add(connection);
+        serviceProvider.getConnectionList().add(connection);
+
+        userRepository2.save(sender);
+
+
 
        return sender;
     }
