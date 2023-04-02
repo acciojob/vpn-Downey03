@@ -25,6 +25,9 @@ public class ServiceProvider {
     @JoinColumn
     List<User> users = new ArrayList<>();
 
+    public ServiceProvider() {
+    }
+
     public ServiceProvider(int id, String name, List<Country> countries, Admin admin, List<Connection> connections, List<User> users) {
         this.id = id;
         this.name = name;
@@ -82,6 +85,5 @@ public class ServiceProvider {
         this.users = users;
     }
 
-    public ServiceProvider() {
-    }
+
 }

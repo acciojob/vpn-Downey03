@@ -1,6 +1,8 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 
@@ -12,12 +14,12 @@ public class Admin {
     private String password;
 
     @OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
-    ServiceProvider serviceProvider;
+    List<ServiceProvider> serviceProvider = new ArrayList<>();
 
     public Admin() {
     }
 
-    public Admin(int id, String username, String password, ServiceProvider serviceProvider) {
+    public Admin(int id, String username, String password, List<ServiceProvider> serviceProvider) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -48,11 +50,11 @@ public class Admin {
         this.password = password;
     }
 
-    public ServiceProvider getServiceProvider() {
+    public List<ServiceProvider> getServiceProvider() {
         return serviceProvider;
     }
 
-    public void setServiceProvider(ServiceProvider serviceProvider) {
+    public void setServiceProvider(List<ServiceProvider> serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
 }
