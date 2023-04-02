@@ -52,6 +52,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         user.setConnected(true);
         String markupIp = cntyName.toCode()+serviceProvider.getId()+user.getId();
         user.setMaskedIp(markupIp);
+        user.setConnected(true);
         Connection connection = new Connection();
         connection.setUser(user);
         connection.setServiceProvider(serviceProvider);
@@ -86,6 +87,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         country.setCountryName(cntyName);
         country.setCode(cntyName.toCode());
         user.setCountry(country);
+        user.setConnected(false);
 
         userRepository2.save(user);
         return user;
@@ -129,6 +131,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         connection.setUser(sender);
         connection.setServiceProvider(serviceProvider);
 
+        sender.setConnected(true);
         sender.getConnectionList().add(connection);
         serviceProvider.getConnectionList().add(connection);
 
