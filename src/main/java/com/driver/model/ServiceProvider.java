@@ -12,14 +12,14 @@ public class ServiceProvider {
     private String name;
 
     @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
-    List<Country> countries = new ArrayList<>();
+    List<Country> countryList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn
     Admin admin;
 
     @OneToMany(mappedBy = "serviceProvider",cascade = CascadeType.ALL)
-    List<Connection> connections = new ArrayList<>();
+    List<Connection> connectionList = new ArrayList<>();
 
     @ManyToMany
     @JoinColumn
@@ -28,12 +28,12 @@ public class ServiceProvider {
     public ServiceProvider() {
     }
 
-    public ServiceProvider(int id, String name, List<Country> countries, Admin admin, List<Connection> connections, List<User> users) {
+    public ServiceProvider(int id, String name, List<Country> countryList, Admin admin, List<Connection> connectionList, List<User> users) {
         this.id = id;
         this.name = name;
-        this.countries = countries;
+        this.countryList = countryList;
         this.admin = admin;
-        this.connections = connections;
+        this.connectionList = connectionList;
         this.users = users;
     }
 
@@ -53,12 +53,12 @@ public class ServiceProvider {
         this.name = name;
     }
 
-    public List<Country> getCountries() {
-        return countries;
+    public List<Country> getCountryList() {
+        return countryList;
     }
 
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
+    public void setCountryList(List<Country> countryList) {
+        this.countryList = countryList;
     }
 
     public Admin getAdmin() {
@@ -69,12 +69,12 @@ public class ServiceProvider {
         this.admin = admin;
     }
 
-    public List<Connection> getConnections() {
-        return connections;
+    public List<Connection> getConnectionList() {
+        return connectionList;
     }
 
-    public void setConnections(List<Connection> connections) {
-        this.connections = connections;
+    public void setConnectionList(List<Connection> connectionList) {
+        this.connectionList = connectionList;
     }
 
     public List<User> getUsers() {

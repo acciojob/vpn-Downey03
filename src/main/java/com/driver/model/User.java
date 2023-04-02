@@ -19,15 +19,14 @@ public class User {
     Country country;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Connection> connections = new ArrayList<>();
+    List<Connection> connectionList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
-    List<ServiceProvider> serviceProviders = new ArrayList<>();
+    List<ServiceProvider> serviceProviderList = new ArrayList<>();
 
     public User() {
     }
-
-    public User(int id, String username, String password, String originalIP, String maskedIP, boolean connected, Country country, List<Connection> connections, List<ServiceProvider> serviceProviders) {
+    public User(int id, String username, String password, String originalIP, String maskedIP, boolean connected, Country country, List<Connection> connectionList, List<ServiceProvider> serviceProviderList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -35,8 +34,8 @@ public class User {
         this.maskedIP = maskedIP;
         this.connected = connected;
         this.country = country;
-        this.connections = connections;
-        this.serviceProviders = serviceProviders;
+        this.connectionList = connectionList;
+        this.serviceProviderList = serviceProviderList;
     }
 
     public int getId() {
@@ -95,19 +94,19 @@ public class User {
         this.country = country;
     }
 
-    public List<Connection> getConnections() {
-        return connections;
+    public List<Connection> getConnectionList() {
+        return connectionList;
     }
 
-    public void setConnections(List<Connection> connections) {
-        this.connections = connections;
+    public void setConnectionList(List<Connection> connectionList) {
+        this.connectionList = connectionList;
     }
 
-    public List<ServiceProvider> getServiceProviders() {
-        return serviceProviders;
+    public List<ServiceProvider> getServiceProviderList() {
+        return serviceProviderList;
     }
 
-    public void setServiceProviders(List<ServiceProvider> serviceProviders) {
-        this.serviceProviders = serviceProviders;
+    public void setServiceProviderList(List<ServiceProvider> serviceProviderList) {
+        this.serviceProviderList = serviceProviderList;
     }
 }

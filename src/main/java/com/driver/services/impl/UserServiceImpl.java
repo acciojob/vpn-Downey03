@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception("Service Provider Not Found");
         }
 
-        user.getServiceProviders().add(serviceProvider);
+        user.getServiceProviderList().add(serviceProvider);
         serviceProvider.getUsers().add(user);
 
         userRepository3.save(user);

@@ -10,7 +10,6 @@ import com.driver.services.ConnectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,7 +43,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         if(user.getCountry().getCountryName().equals(cntyName)) return user;
 
-        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(user.getServiceProviders(),cntyName);
+        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(user.getServiceProviderList(),cntyName);
 
         if(availableProviders.size() == 0) throw new Exception("Unable to connect");
 
@@ -56,8 +55,8 @@ public class ConnectionServiceImpl implements ConnectionService {
         Connection connection = new Connection();
         connection.setUser(user);
         connection.setServiceProvider(serviceProvider);
-        user.getConnections().add(connection);
-        serviceProvider.getConnections().add(connection);
+        user.getConnectionList().add(connection);
+        serviceProvider.getConnectionList().add(connection);
         Country country = user.getCountry();
         country.setCountryName(cntyName);
         country.setCode(cntyName.toCode());
@@ -115,7 +114,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         String countryName = CountryPicker.getCountryFromIP(receiver.getOriginalIP());
         CountryName cntyName = CountryName.valueOf(countryName);
 
-        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(sender.getServiceProviders(),cntyName);
+        List<ServiceProvider> availableProviders = ServiceChecker.isCountryAvailable(sender.getServiceProviderList(),cntyName);
 
         if(availableProviders.size() == 0) throw new Exception("Cannot establish communication");
 
@@ -130,8 +129,8 @@ public class ConnectionServiceImpl implements ConnectionService {
         connection.setUser(sender);
         connection.setServiceProvider(serviceProvider);
 
-        sender.getConnections().add(connection);
-        serviceProvider.getConnections().add(connection);
+        sender.getConnectionList().add(connection);
+        serviceProvider.getConnectionList().add(connection);
 
         userRepository2.save(sender);
 

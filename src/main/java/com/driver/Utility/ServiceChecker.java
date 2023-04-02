@@ -13,7 +13,7 @@ public class ServiceChecker {
         List<ServiceProvider> availableProviders = new ArrayList<>();
 
         for(ServiceProvider serviceProvider :serviceProviders){
-            for(Country country : serviceProvider.getCountries()){
+            for(Country country : serviceProvider.getCountryList()){
                 if(country.getCountryName().equals(cntyName)){
                     availableProviders.add(serviceProvider);
                 }
